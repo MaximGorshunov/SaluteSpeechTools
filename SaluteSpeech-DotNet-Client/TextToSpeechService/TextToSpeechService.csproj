@@ -26,4 +26,12 @@
       </PackageReference>
     </ItemGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\Auth\Auth.csproj" />
+    </ItemGroup>
+  
+    <ItemGroup>
+      <Protobuf Include="Protos\synthesis.proto" GrpcServices="Client" />
+    </ItemGroup>
+
 </Project>

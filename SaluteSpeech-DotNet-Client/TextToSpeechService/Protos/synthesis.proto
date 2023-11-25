@@ -2,17 +2,12 @@ syntax = "proto3";
 
 package smartspeech.synthesis.v1;
 
-import "task.proto";
-
 import "google/protobuf/duration.proto";
 
-option go_package = "./;protocol";
-option java_package = "TODO";
+option csharp_namespace = "GrpcSmartSpeech";
 
 service SmartSpeech {
   rpc Synthesize (SynthesisRequest) returns (stream SynthesisResponse);
-
-  rpc AsyncSynthesize (AsyncSynthesisRequest) returns (smartspeech.task.v1.Task);
 }
 
 message SynthesisRequest {
@@ -39,10 +34,4 @@ message SynthesisRequest {
 message SynthesisResponse {
   bytes data = 1; // chunk of audio data
   google.protobuf.Duration audio_duration = 2; // time from start of audio so far
-}
-
-message AsyncSynthesisRequest {
-  string request_file_id = 1;
-  SynthesisRequest.AudioEncoding audio_encoding = 2;
-  string voice = 3;
 }

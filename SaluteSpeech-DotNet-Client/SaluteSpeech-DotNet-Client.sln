@@ -6,6 +6,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Auth", "Auth\Auth.csproj", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AuthTest", "AuthTest\AuthTest.csproj", "{3CC1F042-7910-418A-AA9B-1C6FFF15152F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SandboxConsoleApp", "SandboxConsoleApp\SandboxConsoleApp.csproj", "{70474787-419F-4DE4-AA8A-7379AB209200}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,5 +26,9 @@ Global
 		{3CC1F042-7910-418A-AA9B-1C6FFF15152F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3CC1F042-7910-418A-AA9B-1C6FFF15152F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3CC1F042-7910-418A-AA9B-1C6FFF15152F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{70474787-419F-4DE4-AA8A-7379AB209200}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{70474787-419F-4DE4-AA8A-7379AB209200}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{70474787-419F-4DE4-AA8A-7379AB209200}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{70474787-419F-4DE4-AA8A-7379AB209200}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

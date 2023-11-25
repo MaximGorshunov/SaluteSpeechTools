@@ -8,6 +8,7 @@ namespace Auth;
 [SuppressMessage("Performance", "CA1848:Use the LoggerMessage delegates")]
 public class TokenProvider : ITokenProvider
 {
+    private static readonly SemaphoreSlim s_semaphoreSlim = new(1);
     private readonly ILogger<TokenProvider>? _logger;
     private readonly string _secretKey;
     
@@ -28,10 +29,8 @@ public class TokenProvider : ITokenProvider
     public async Task<string> GetToken(CancellationToken cancellationToken)
     {
         cancellationToken.ThrowIfCancellationRequested();
-
-        using var semaphoreSlim = new SemaphoreSlim(1, 1);
         
-        await semaphoreSlim.WaitAsync(cancellationToken).ConfigureAwait(false);
+        await s_semaphoreSlim.WaitAsync(cancellationToken).ConfigureAwait(false);
         try
         {
             if (string.IsNullOrEmpty(_token) || _exp - DateTimeOffset.UtcNow <= TimeSpan.FromMinutes(1))
@@ -48,7 +47,7 @@ public class TokenProvider : ITokenProvider
         }
         finally
         {
-            semaphoreSlim.Release();
+            s_semaphoreSlim.Release();
         }
     }
 

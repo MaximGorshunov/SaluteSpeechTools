@@ -2,5 +2,8 @@
 
 public interface ISpeechSynthesizer
 {
-    public Task<Stream> GenerateAsync(string text);
+    /// <summary>
+    /// Generates audio stream from synthesis request
+    /// </summary>
+    public Task<Stream> GenerateAsync(ISynthesisRequest synthesisRequest, CancellationToken cancellationToken);
 }
