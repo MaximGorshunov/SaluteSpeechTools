@@ -1,4 +1,5 @@
 using Auth;
+using Xunit;
 using Microsoft.Extensions.Configuration;
 
 namespace AuthTest;
@@ -20,10 +21,9 @@ public class TokenProviderTests
     [Fact] 
     public async Task GetToken_WithWrongSecretKey()
     {
-        var tokenProvider = new TokenProvider("wrongSecretKey");
+        var tokenProvider = new TokenProvider("WrongSecretKey");
         var cancellationToken = CancellationToken.None;
-        var result = await tokenProvider.GetToken(cancellationToken);
-        Assert.Empty(result);
+        await Assert.ThrowsAsync<HttpRequestException>(async () => await tokenProvider.GetToken(cancellationToken));
     }
 
     [Fact] public async Task GetToken_Multitask()

@@ -1,15 +1,15 @@
 ﻿namespace Auth;
 
 /// <summary>
-/// Provides access to a token
+/// Provides access to an access token.
 /// </summary>
 public interface ITokenProvider
 {
     /// <summary>
-    /// Returns a token
+    /// Returns an access token.
     /// </summary>
-    /// <param name="cancellationToken"></param>
-    /// <returns></returns>
+    /// <param name="cancellationToken">Cancellation token.</param>
+    /// <returns>Access token value.</returns>
     Task<string> GetToken(CancellationToken cancellationToken);
 }
 

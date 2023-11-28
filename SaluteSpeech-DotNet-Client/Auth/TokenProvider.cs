@@ -14,7 +14,10 @@ public class TokenProvider : ITokenProvider
     
     private DateTimeOffset _exp;
     private string _token = string.Empty;
-
+    
+    /// <param name="secretKey">Client secret key.</param>
+    /// <param name="logger">Logger to log errors.</param>
+    /// <exception cref="ArgumentNullException">Thrown when <paramref name="secretKey"/> is null.</exception>
     public TokenProvider(string secretKey, ILogger<TokenProvider>? logger = null)
     {
         _secretKey = secretKey ?? throw new ArgumentNullException(nameof(secretKey));
@@ -22,10 +25,11 @@ public class TokenProvider : ITokenProvider
     }
 
     /// <summary>
-    /// Generates a token, saves and return it if it's empty or expired, else returns current token
+    /// Generates an access token, saves and returns it if it's empty or expired, else returns current access token.
     /// </summary>
-    /// <param name="cancellationToken"></param>
-    /// <returns></returns>
+    /// <param name="cancellationToken">Cancellation token.</param>
+    /// <returns>Access token value.</returns>
+    /// <exception cref="HttpRequestException">Thrown when request to generate token failed.</exception>
     public async Task<string> GetToken(CancellationToken cancellationToken)
     {
         cancellationToken.ThrowIfCancellationRequested();
@@ -42,8 +46,8 @@ public class TokenProvider : ITokenProvider
         }
         catch (HttpRequestException ex)
         {
-            _logger?.Log(LogLevel.Error, ex, "Failed to generate token. Current token: {@token}. Current exp: {@exp}.", _token, _exp);
-            return string.Empty;
+            _logger?.Log(LogLevel.Error, ex, "Token generate request failed. Secret key: {@secretKey}", _secretKey);
+            throw;
         }
         finally
         {
@@ -55,24 +59,36 @@ public class TokenProvider : ITokenProvider
     {
         cancellationToken.ThrowIfCancellationRequested();
         
-        using HttpClient httpClient = new();
-        
         const string requestBody = "scope=SALUTE_SPEECH_PERS";
         const string endpoint = "https://ngw.devices.sberbank.ru:9443/api/v2/oauth";
+        
+        string rqUid = Guid.NewGuid().ToString();
+        
+        try
+        {
+            using HttpClient httpClient = new();
+            httpClient.DefaultRequestHeaders.Add("Authorization", "Basic " + _secretKey);
+            httpClient.DefaultRequestHeaders.Add("RqUID", rqUid);
 
-        httpClient.DefaultRequestHeaders.Add("Authorization", "Basic " + _secretKey);
-        httpClient.DefaultRequestHeaders.Add("RqUID", Guid.NewGuid().ToString());
+            using HttpContent httpContent = new StringContent(requestBody);
+            httpContent.Headers.ContentType = new MediaTypeHeaderValue("application/x-www-form-urlencoded");
 
-        using HttpContent httpContent = new StringContent(requestBody);
-        httpContent.Headers.ContentType = new MediaTypeHeaderValue("application/x-www-form-urlencoded");
+            HttpResponseMessage response = await httpClient.PostAsync(new Uri(endpoint), httpContent, cancellationToken).ConfigureAwait(false);
 
-        HttpResponseMessage response = await httpClient.PostAsync(new Uri(endpoint), httpContent, cancellationToken).ConfigureAwait(false);
+            response.EnsureSuccessStatusCode();
 
-        response.EnsureSuccessStatusCode();
+            string responseBody = await response.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
+            JObject json = JObject.Parse(responseBody);
+            _token = json.Value<string>("access_token") ?? string.Empty;
+            _exp = DateTimeOffset.FromUnixTimeMilliseconds(json.Value<long>("expires_at"));
+        }
+        catch (HttpRequestException ex)
+        {
+            _token = string.Empty;
+            ex.Data.Add("RqUID", rqUid);
+            ex.Data.Add("secret key", _secretKey);
+            throw;
+        }
 
-        string responseBody = await response.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
-        JObject json = JObject.Parse(responseBody);
-        _token = json.Value<string>("access_token") ?? string.Empty;
-        _exp = DateTimeOffset.FromUnixTimeMilliseconds(json.Value<long>("expires_at"));
     }
 }
