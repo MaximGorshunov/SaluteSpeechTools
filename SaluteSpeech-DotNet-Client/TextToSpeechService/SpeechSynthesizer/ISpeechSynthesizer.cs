@@ -1,9 +1,15 @@
 ﻿namespace TextToSpeechService.SpeechSynthesizer;
 
+/// <summary>
+/// Represents a speech synthesizer that can synthesize audio.
+/// </summary>
 public interface ISpeechSynthesizer
 {
     /// <summary>
-    /// Generates audio stream from synthesis request
+    /// Synthesize audio from synthesis request.
     /// </summary>
-    public Task<Stream> GenerateAsync(ISynthesisRequest synthesisRequest, CancellationToken cancellationToken);
+    /// <param name="synthesisRequest">Contains synthesis request params.</param>
+    /// <param name="cancellationToken">Cancellation token.</param>
+    /// <returns>Stream with synthesized audio bytes</returns>
+    Task<Stream> SynthesizeAsync(ISynthesisRequest synthesisRequest, CancellationToken cancellationToken);
 }

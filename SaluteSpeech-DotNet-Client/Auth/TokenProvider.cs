@@ -30,7 +30,7 @@ public class TokenProvider : ITokenProvider
     /// <param name="cancellationToken">Cancellation token.</param>
     /// <returns>Access token value.</returns>
     /// <exception cref="HttpRequestException">Thrown when request to generate token failed.</exception>
-    public async Task<string> GetToken(CancellationToken cancellationToken)
+    public async Task<string> GetTokenAsync(CancellationToken cancellationToken)
     {
         cancellationToken.ThrowIfCancellationRequested();
         

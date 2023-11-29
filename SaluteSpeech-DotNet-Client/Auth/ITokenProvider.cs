@@ -10,6 +10,6 @@ public interface ITokenProvider
     /// </summary>
     /// <param name="cancellationToken">Cancellation token.</param>
     /// <returns>Access token value.</returns>
-    Task<string> GetToken(CancellationToken cancellationToken);
+    Task<string> GetTokenAsync(CancellationToken cancellationToken);
 }
 

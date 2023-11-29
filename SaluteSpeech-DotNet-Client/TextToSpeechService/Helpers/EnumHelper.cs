@@ -8,8 +8,8 @@ internal static class EnumHelper
     /// <summary>
     /// Returns the description of an enum.
     /// </summary>
-    /// <param name="enumValue">enum value</param>
-    /// <returns></returns>
+    /// <param name="enumValue">enum value.</param>
+    /// <returns>Description of an enum value.</returns>
     public static string GetEnumDescription(Enum enumValue)
     {
         FieldInfo? fieldInfo = enumValue.GetType().GetField(enumValue.ToString());

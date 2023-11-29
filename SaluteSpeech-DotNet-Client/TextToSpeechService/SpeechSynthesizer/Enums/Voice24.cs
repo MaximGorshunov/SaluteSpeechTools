@@ -3,7 +3,7 @@
 namespace TextToSpeechService.SpeechSynthesizer.Enums;
 
 /// <summary>
-/// Voice code that will be used for synthesis.Audio sampling frequency is 24 kHz.
+/// Voice code that will be used for synthesis. Audio sampling frequency is 24 kHz.
 /// </summary>
 public enum Voice24
 {
