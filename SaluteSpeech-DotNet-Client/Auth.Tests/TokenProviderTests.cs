@@ -1,8 +1,7 @@
-using Auth;
 using Xunit;
 using Microsoft.Extensions.Configuration;
 
-namespace AuthTest;
+namespace Auth.Tests;
 
 public class TokenProviderTests
 {   
@@ -14,7 +13,7 @@ public class TokenProviderTests
     {
         var tokenProvider = new TokenProvider(SecretKey);
         var cancellationToken = CancellationToken.None;
-        var result = await tokenProvider.GetToken(cancellationToken);
+        var result = await tokenProvider.GetTokenAsync(cancellationToken);
         Assert.NotEmpty(result);
     }
     
@@ -23,7 +22,7 @@ public class TokenProviderTests
     {
         var tokenProvider = new TokenProvider("WrongSecretKey");
         var cancellationToken = CancellationToken.None;
-        await Assert.ThrowsAsync<HttpRequestException>(async () => await tokenProvider.GetToken(cancellationToken));
+        await Assert.ThrowsAsync<HttpRequestException>(async () => await tokenProvider.GetTokenAsync(cancellationToken));
     }
 
     [Fact] public async Task GetToken_Multitask()
@@ -32,10 +31,10 @@ public class TokenProviderTests
         var cancellationToken = CancellationToken.None;
         var tasks = new List<Task<string>>
         {
-            Task.Run(() => tokenProvider.GetToken(cancellationToken)),
-            Task.Run(() => tokenProvider.GetToken(cancellationToken)),
-            Task.Run(() => tokenProvider.GetToken(cancellationToken)),
-            Task.Run(() => tokenProvider.GetToken(cancellationToken))
+            Task.Run(() => tokenProvider.GetTokenAsync(cancellationToken)),
+            Task.Run(() => tokenProvider.GetTokenAsync(cancellationToken)),
+            Task.Run(() => tokenProvider.GetTokenAsync(cancellationToken)),
+            Task.Run(() => tokenProvider.GetTokenAsync(cancellationToken))
         };
         var tokens = await Task.WhenAll(tasks);
         Assert.All(tokens, t => Assert.Equal(tokens[0], t));
