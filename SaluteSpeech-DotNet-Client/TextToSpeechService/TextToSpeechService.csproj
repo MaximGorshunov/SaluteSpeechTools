@@ -10,10 +10,6 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <Folder Include="Protos\" />
-    </ItemGroup>
-
-    <ItemGroup>
       <PackageReference Include="Google.Protobuf" Version="3.25.1" />
       <PackageReference Include="Grpc.Net.Client" Version="2.59.0" />
       <PackageReference Include="Grpc.Tools" Version="2.60.0-pre1">
@@ -31,7 +27,7 @@
     </ItemGroup>
   
     <ItemGroup>
-      <Protobuf Include="Protos\synthesis.proto" GrpcServices="Client" />
+      <Protobuf Include="Protos\synthesis.proto" GrpcServices="Client" Access="internal"/>
     </ItemGroup>
 
 </Project>

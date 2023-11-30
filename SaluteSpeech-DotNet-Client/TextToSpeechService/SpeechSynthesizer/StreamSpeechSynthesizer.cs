@@ -40,9 +40,7 @@ public class StreamSpeechSynthesizer : ISpeechSynthesizer
     /// <param name="synthesisRequest">Contains synthesis request params.</param>
     /// <param name="cancellationToken">Cancellation token.</param>
     /// <returns>Stream with synthesized audio bytes</returns>
-    /// <exception cref="ArgumentNullException">
-    /// Thrown when <paramref name="synthesisRequest"/> is null or when <paramref name="synthesisRequest.Voice"/> or <paramref name="synthesisRequest.Text"/> is null.
-    /// </exception>
+    /// <exception cref="ArgumentNullException">Thrown when <paramref name="synthesisRequest"/> is null.</exception>
     /// <exception cref="RpcException">Thrown when failed to synthesis audio.</exception>
     /// <exception cref="HttpRequestException">Thrown when there is authorization error.</exception>
     public async Task<Stream> SynthesizeAsync(ISynthesisRequest synthesisRequest, CancellationToken cancellationToken)
@@ -54,21 +52,10 @@ public class StreamSpeechSynthesizer : ISpeechSynthesizer
             throw new ArgumentNullException(nameof(synthesisRequest));
         }
         
-        if (synthesisRequest.Voice == null || synthesisRequest.Text == null)
-        {
-            throw new ArgumentNullException(nameof(synthesisRequest), "Voice and Text are required.");
-        }
-        
         await s_semaphoreSlim.WaitAsync(cancellationToken).ConfigureAwait(false);
         try
         {
-            var request = new SynthesisRequest
-            {
-                AudioEncoding = (SynthesisRequest.Types.AudioEncoding)synthesisRequest.AudioEncoding,
-                ContentType = (SynthesisRequest.Types.ContentType)synthesisRequest.ContentType,
-                Voice = synthesisRequest.Voice,
-                Text = synthesisRequest.Text
-            };
+            var request = ToGrpcRequest(synthesisRequest);
             var metadata = await GetMetadata(cancellationToken).ConfigureAwait(false);
             var response = _client.Synthesize(request, metadata, cancellationToken: cancellationToken);
 
@@ -99,5 +86,17 @@ public class StreamSpeechSynthesizer : ISpeechSynthesizer
     }
     
     private async Task<Metadata> GetMetadata(CancellationToken cancellationToken) 
-        => new() { { "Authorization", $"Bearer {await _tokenProvider.GetTokenAsync(cancellationToken).ConfigureAwait(false)}" } }; 
+        => new() { { "Authorization", $"Bearer {await _tokenProvider.GetTokenAsync(cancellationToken).ConfigureAwait(false)}" } };
+
+    private static SynthesisRequest ToGrpcRequest(ISynthesisRequest request)
+    {
+        var grpcRequest = new SynthesisRequest
+        {
+            AudioEncoding = (SynthesisRequest.Types.AudioEncoding)request.Settings.AudioEncoding,
+            ContentType = (SynthesisRequest.Types.ContentType)request.Settings.ContentType,
+            Voice = request.Settings.Voice,
+            Text = request.Text
+        };
+        return grpcRequest;
+    }
 }
