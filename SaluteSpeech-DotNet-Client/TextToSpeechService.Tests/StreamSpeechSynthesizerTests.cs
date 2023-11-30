@@ -27,7 +27,8 @@ public class StreamSpeechSynthesizerTests
     {
         var tokenProvider = new TokenProvider(SecretKey);
         var cancellationToken = CancellationToken.None;
-        var synthesisRequest = new StreamSynthesisRequest(string.Empty);
+        var settings = new StreamSynthesisRequestSettings();
+        var synthesisRequest = new StreamSynthesisRequest(settings, string.Empty);
         var synthesizer = new StreamSpeechSynthesizer(tokenProvider);
         
         await Assert.ThrowsAsync<RpcException>(() => synthesizer.SynthesizeAsync(synthesisRequest, cancellationToken));
