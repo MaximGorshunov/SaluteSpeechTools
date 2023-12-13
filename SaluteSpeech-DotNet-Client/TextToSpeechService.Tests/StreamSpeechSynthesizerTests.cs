@@ -8,29 +8,29 @@ namespace TextToSpeechService.Tests;
 
 public class StreamSpeechSynthesizerTests
 {
-    private static readonly IConfigurationRoot Config = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build();
-    private static readonly string SecretKey = Config["ApiKeys:SecretKey"] ?? throw new ArgumentNullException(nameof(SecretKey));
+    private static readonly IConfigurationRoot s_config = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build();
+    private static readonly string s_secretKey = s_config["ApiKeys:SecretKey"] ?? throw new ArgumentNullException(nameof(s_secretKey));
     
     [Fact]
-    public async Task SynthesizeAsync_ThrowsArgumentNullException_WhenSynthesisRequestIsNull()
+    public async Task SynthesizeAsyncThrowsArgumentNullExceptionWhenSynthesisRequestIsNull()
     {
         var tokenProvider = new TokenProvider("secretKey");
         var cancellationToken = CancellationToken.None;
-        var synthesisRequest = (ISynthesisRequest)null;
+        ISynthesisRequest? synthesisRequest = null;
         var synthesizer = new StreamSpeechSynthesizer(tokenProvider);
         
-        await Assert.ThrowsAsync<ArgumentNullException>(() => synthesizer.SynthesizeAsync(synthesisRequest, cancellationToken));
+        await Assert.ThrowsAsync<ArgumentNullException>(() => synthesizer.SynthesizeAsync(synthesisRequest!, cancellationToken)).ConfigureAwait(false);
     }
     
     [Fact]
-    public async Task SynthesizeAsync_ThrowsRpcException_WhenTextIsEmpty()
+    public async Task SynthesizeAsyncThrowsRpcExceptionWhenTextIsEmpty()
     {
-        var tokenProvider = new TokenProvider(SecretKey);
+        var tokenProvider = new TokenProvider(s_secretKey);
         var cancellationToken = CancellationToken.None;
         var settings = new StreamSynthesisRequestSettings();
         var synthesisRequest = new StreamSynthesisRequest(settings, string.Empty);
         var synthesizer = new StreamSpeechSynthesizer(tokenProvider);
         
-        await Assert.ThrowsAsync<RpcException>(() => synthesizer.SynthesizeAsync(synthesisRequest, cancellationToken));
+        await Assert.ThrowsAsync<RpcException>(() => synthesizer.SynthesizeAsync(synthesisRequest, cancellationToken)).ConfigureAwait(false);
     }
 }
