@@ -49,6 +49,15 @@ public class StreamSynthesisRequestSettings : ISynthesisRequestSettings
     public ContentType ContentType { get; set; }
     public string Voice { get; private set; }
     
+    /// <summary>
+    /// Set voice code that will be used for synthesis.
+    /// </summary>
+    /// <param name="voice">Voice code. Audio sampling frequency is 24 kHz.</param>
     public void SetVoice(Voice24 voice) => Voice = EnumHelper.GetEnumDescription(voice);
+    
+    /// <summary>
+    /// Set voice code that will be used for synthesis.
+    /// </summary>
+    /// <param name="voice">Voice code. Audio sampling frequency is 8 kHz.</param>
     public void SetVoice(Voice8 voice) => Voice = EnumHelper.GetEnumDescription(voice);
 }

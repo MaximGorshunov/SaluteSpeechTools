@@ -19,6 +19,13 @@ public class StreamSynthesisRequest : ISynthesisRequest
         Text = text ?? throw new ArgumentNullException(nameof(text));    
     }
     
+    /// <summary>
+    /// Synthesis request settings.
+    /// </summary>
     public ISynthesisRequestSettings Settings { get; }
+    
+    /// <summary>
+    /// Text to synthesize.
+    /// </summary>
     public string Text { get; }
 }

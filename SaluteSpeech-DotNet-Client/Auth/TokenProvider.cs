@@ -5,6 +5,9 @@ using Newtonsoft.Json.Linq;
 
 namespace Auth;
 
+/// <summary>
+/// Provides access to an access token.
+/// </summary>
 [SuppressMessage("Performance", "CA1848:Use the LoggerMessage delegates")]
 public class TokenProvider : ITokenProvider
 {
@@ -15,6 +18,9 @@ public class TokenProvider : ITokenProvider
     private DateTimeOffset _exp;
     private string _token = string.Empty;
     
+    /// <summary>
+    /// Initializes a new instance of the <see cref="TokenProvider"/> class.
+    /// </summary>
     /// <param name="secretKey">Client secret key.</param>
     /// <param name="logger">Logger to log errors.</param>
     /// <exception cref="ArgumentNullException">Thrown when <paramref name="secretKey"/> is null.</exception>
