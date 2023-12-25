@@ -1,6 +1,6 @@
-﻿using TextToSpeechService.SpeechSynthesizer.Enums;
+﻿using SaluteSpeechClient.TextToSpeechService.SpeechSynthesizer.Enums;
 
-namespace TextToSpeechService.SpeechSynthesizer;
+namespace SaluteSpeechClient.TextToSpeechService.SpeechSynthesizer;
 
 /// <summary>
 /// Contains synthesis request settings.

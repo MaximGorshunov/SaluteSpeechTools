@@ -17,7 +17,6 @@
           <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
         <PackageReference Include="Microsoft.Extensions.Configuration" Version="8.0.0" />
-        <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="8.0.0" />
         <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="8.0.0" />
         <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.7.1"/>
         <PackageReference Include="xunit" Version="2.4.2"/>
@@ -32,7 +31,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\TextToSpeechService\TextToSpeechService.csproj" />
+      <ProjectReference Include="..\SaluteSpeechClient.Auth\SaluteSpeechClient.Auth.csproj" />
     </ItemGroup>
 
     <ItemGroup>

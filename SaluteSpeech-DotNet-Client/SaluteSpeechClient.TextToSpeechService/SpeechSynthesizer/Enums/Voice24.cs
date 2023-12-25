@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel;
 
-namespace TextToSpeechService.SpeechSynthesizer.Enums;
+namespace SaluteSpeechClient.TextToSpeechService.SpeechSynthesizer.Enums;
 
 /// <summary>
 /// Voice code that will be used for synthesis. Audio sampling frequency is 24 kHz.

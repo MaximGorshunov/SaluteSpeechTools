@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel;
 using System.Reflection;
 
-namespace TextToSpeechService.Helpers;
+namespace SaluteSpeechClient.TextToSpeechService.Helpers;
 
 internal static class EnumHelper
 {

@@ -3,7 +3,7 @@ using System.Net.Http.Headers;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json.Linq;
 
-namespace Auth;
+namespace SaluteSpeechClient.Auth;
 
 /// <summary>
 /// Provides access to an access token.

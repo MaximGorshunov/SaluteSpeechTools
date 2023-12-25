@@ -1,4 +1,4 @@
-﻿namespace Auth;
+﻿namespace SaluteSpeechClient.Auth;
 
 /// <summary>
 /// Provides access to an access token.

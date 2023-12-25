@@ -24,7 +24,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\Auth\Auth.csproj" />
+      <ProjectReference Include="..\SaluteSpeechClient.Auth\SaluteSpeechClient.Auth.csproj" />
     </ItemGroup>
   
     <ItemGroup>

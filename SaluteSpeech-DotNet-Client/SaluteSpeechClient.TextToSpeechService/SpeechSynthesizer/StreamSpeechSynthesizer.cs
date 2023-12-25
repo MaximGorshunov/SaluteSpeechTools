@@ -1,11 +1,11 @@
-﻿using Auth;
+﻿using SaluteSpeechClient.Auth;
 using Grpc.Core;
 using Grpc.Net.Client;
 using GrpcSmartSpeech;
 using Microsoft.Extensions.Logging;
 using System.Diagnostics.CodeAnalysis;
 
-namespace TextToSpeechService.SpeechSynthesizer;
+namespace SaluteSpeechClient.TextToSpeechService.SpeechSynthesizer;
 
 /// <summary>
 /// Represents a streaming speech synthesizer that can synthesize audio.

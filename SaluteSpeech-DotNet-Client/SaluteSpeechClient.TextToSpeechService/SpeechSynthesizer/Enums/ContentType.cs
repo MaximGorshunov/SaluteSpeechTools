@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel;
 
-namespace TextToSpeechService.SpeechSynthesizer.Enums;
+namespace SaluteSpeechClient.TextToSpeechService.SpeechSynthesizer.Enums;
 
 /// <summary>
 /// The format of the data sent in the request body.

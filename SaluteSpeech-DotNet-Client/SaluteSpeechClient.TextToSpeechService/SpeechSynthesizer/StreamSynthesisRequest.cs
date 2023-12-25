@@ -1,6 +1,4 @@
-﻿using GrpcSmartSpeech;
-
-namespace TextToSpeechService.SpeechSynthesizer;
+﻿namespace SaluteSpeechClient.TextToSpeechService.SpeechSynthesizer;
 
 /// <summary>
 /// Contains params of stream synthesis request.

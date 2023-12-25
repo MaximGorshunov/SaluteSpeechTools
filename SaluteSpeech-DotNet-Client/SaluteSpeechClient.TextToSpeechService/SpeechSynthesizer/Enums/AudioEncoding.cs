@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel;
 
-namespace TextToSpeechService.SpeechSynthesizer.Enums;
+namespace SaluteSpeechClient.TextToSpeechService.SpeechSynthesizer.Enums;
 
 /// <summary>
 /// Audio format for the synthesized audio content.

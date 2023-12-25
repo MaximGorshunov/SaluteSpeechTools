@@ -1,7 +1,7 @@
 using Xunit;
 using Microsoft.Extensions.Configuration;
 
-namespace Auth.Tests;
+namespace SaluteSpeechClient.Auth.Tests;
 
 public class TokenProviderTests
 {   

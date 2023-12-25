@@ -1,12 +1,12 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TextToSpeechService", "TextToSpeechService\TextToSpeechService.csproj", "{54EEFE11-0346-4B86-B2A6-47FCB8B1C5EE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SaluteSpeechClient.TextToSpeechService", "SaluteSpeechClient.TextToSpeechService\SaluteSpeechClient.TextToSpeechService.csproj", "{54EEFE11-0346-4B86-B2A6-47FCB8B1C5EE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Auth", "Auth\Auth.csproj", "{48AC394F-C1A1-4318-8169-76A3637AD979}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SaluteSpeechClient.Auth", "SaluteSpeechClient.Auth\SaluteSpeechClient.Auth.csproj", "{48AC394F-C1A1-4318-8169-76A3637AD979}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Auth.Tests", "Auth.Tests\Auth.Tests.csproj", "{3CC1F042-7910-418A-AA9B-1C6FFF15152F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SaluteSpeechClient.Auth.Tests", "SaluteSpeechClient.Auth.Tests\SaluteSpeechClient.Auth.Tests.csproj", "{3CC1F042-7910-418A-AA9B-1C6FFF15152F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TextToSpeechService.Tests", "TextToSpeechService.Tests\TextToSpeechService.Tests.csproj", "{62C74D12-E86D-4642-91EB-6D00849F0FE9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SaluteSpeechClient.TextToSpeechService.Tests", "SaluteSpeechClient.TextToSpeechService.Tests\SaluteSpeechClient.TextToSpeechService.Tests.csproj", "{62C74D12-E86D-4642-91EB-6D00849F0FE9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

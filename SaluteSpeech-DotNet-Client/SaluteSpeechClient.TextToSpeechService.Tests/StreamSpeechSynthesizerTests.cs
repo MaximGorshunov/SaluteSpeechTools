@@ -1,10 +1,10 @@
-using Auth;
+using SaluteSpeechClient.Auth;
 using Xunit;
 using Grpc.Core;
 using Microsoft.Extensions.Configuration;
-using TextToSpeechService.SpeechSynthesizer;
+using SaluteSpeechClient.TextToSpeechService.SpeechSynthesizer;
 
-namespace TextToSpeechService.Tests;
+namespace SaluteSpeechClient.TextToSpeechService.Tests;
 
 public class StreamSpeechSynthesizerTests
 {
