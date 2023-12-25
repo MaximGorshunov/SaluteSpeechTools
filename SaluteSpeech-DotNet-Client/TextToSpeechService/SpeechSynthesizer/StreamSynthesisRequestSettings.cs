@@ -45,8 +45,17 @@ public class StreamSynthesisRequestSettings : ISynthesisRequestSettings
         Voice = EnumHelper.GetEnumDescription(voice);
     }
     
+    /// <summary>
+    /// Audio format for the synthesized audio content.
+    /// </summary>
     public AudioEncoding AudioEncoding { get; set; }
+    /// <summary>
+    /// The format of the data sent in the request body.
+    /// </summary>
     public ContentType ContentType { get; set; }
+    /// <summary>
+    /// Voice that will be used for synthesis.
+    /// </summary>
     public string Voice { get; private set; }
     
     /// <summary>
