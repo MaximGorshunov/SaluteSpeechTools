@@ -8,6 +8,10 @@
         <AnalysisMode>AllEnabledByDefault</AnalysisMode>
         <CodeAnalysisTreatWarningsAsErrors>true</CodeAnalysisTreatWarningsAsErrors>
         <GenerateDocumentationFile>true</GenerateDocumentationFile>
+        <PackageId>SaluteSpeechClient.Auth</PackageId>
+        <PackageVersion>1.0.0</PackageVersion>
+        <Authors>MG</Authors>
+        <Company>MG-Company</Company>
     </PropertyGroup>
 
     <ItemGroup>
