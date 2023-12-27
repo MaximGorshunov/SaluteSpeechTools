@@ -1,0 +1,38 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net7.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+        <AnalysisMode>AllEnabledByDefault</AnalysisMode>
+        <CodeAnalysisTreatWarningsAsErrors>true</CodeAnalysisTreatWarningsAsErrors>
+        <GenerateDocumentationFile>true</GenerateDocumentationFile>
+        <PackageId>SaluteSpeechClient.TextToSpeechService</PackageId>
+        <PackageVersion>1.0.0</PackageVersion>
+        <Authors>MG</Authors>
+        <Company>MG-Company</Company>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Google.Protobuf" Version="3.25.1" />
+      <PackageReference Include="Grpc.Net.Client" Version="2.59.0" />
+      <PackageReference Include="Grpc.Tools" Version="2.60.0-pre1">
+        <PrivateAssets>all</PrivateAssets>
+        <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      </PackageReference>
+      <PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="8.0.0-preview.23525.2">
+        <PrivateAssets>all</PrivateAssets>
+        <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      </PackageReference>
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\SaluteSpeechClient.Auth\SaluteSpeechClient.Auth.csproj" />
+    </ItemGroup>
+  
+    <ItemGroup>
+      <Protobuf Include="Protos\synthesis.proto" GrpcServices="Client" Access="internal"/>
+    </ItemGroup>
+
+</Project>
