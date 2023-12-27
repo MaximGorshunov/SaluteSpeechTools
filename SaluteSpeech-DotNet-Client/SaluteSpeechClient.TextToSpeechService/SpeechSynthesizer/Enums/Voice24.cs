@@ -30,5 +30,9 @@ public enum Voice24
     /// <summary>
     /// Man's russian voice Sergey (Pon_24000).
     /// </summary>
-    [Description("Pon_24000")] Pon = 5
+    [Description("Pon_24000")] Pon = 5,
+    /// <summary>
+    /// Woman's english voice Kira (Kin_24000).
+    /// </summary>
+    [Description("Kin_24000")] Kin = 6
 }

@@ -30,5 +30,9 @@ public enum Voice8
     /// <summary>
     /// Man's russian voice Pon (Pon_8000).
     /// </summary>
-    [Description("Pon_8000")] Pon = 5
+    [Description("Pon_8000")] Pon = 5,
+    /// <summary>
+    /// Woman's english voice Kira (Kin_8000).
+    /// </summary>
+    [Description("Kin_8000")] Kin = 6
 }
